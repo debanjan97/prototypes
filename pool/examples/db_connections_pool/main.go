@@ -71,7 +71,6 @@ func withPool(numQueries, poolSize int) {
 			defer wg.Done()
 			client := p.Get()
 			defer p.Put(client)
-			// Do not close the connection here, it will be closed when the pool is closed
 			// defer client.Close()
 			runQuery(client, "SELECT pg_sleep(1);")
 		}()
